@@ -6,6 +6,24 @@ public class Item {
     private String name;
     private String unit;
     private double price;
+    private Category category;
+
+    public Item(int id, String barcode, String name, String unit, double price, Category category) {
+        this.id = id;
+        this.barcode = barcode;
+        this.name = name;
+        this.unit = unit;
+        this.price = price;
+        this.category = category;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public int getId() {
         return id;
