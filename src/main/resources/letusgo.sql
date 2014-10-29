@@ -18,10 +18,18 @@ CREATE TABLE promotions(
   type int
 );
 
+DROP TABLE IF EXISTS promotions;
+
+CREATE TABLE promotions(
+  id int auto_increment primary key,
+  prodesc varchar(50),
+  type int
+);
+
 DROP TABLE IF EXISTS items_promotions;
 
 CREATE TABLE items_promotions(
-  itemId int not null REFERENCES items(id),
+  itemId int not null foreign key  REFERENCES items(id),
   promotionId int not null REFERENCES promotions(id),
   discount double,
   primary key(itemId, promotionId)
