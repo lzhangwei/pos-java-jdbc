@@ -1,4 +1,4 @@
 package com.thoughtworks.iamcoach.vo;
 
-public class PromotionSecondHalf {
+public class PromotionSecondHalf extends Promotion{
 }
