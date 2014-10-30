@@ -9,7 +9,7 @@ import java.util.List;
 import static org.fest.assertions.api.Assertions.assertThat;
 
 public class ScannerTest {
-    
+
     @Test
     public void scanner_test() {
         List<String> barcodes = new ArrayList<String>();
