@@ -4,9 +4,7 @@ import com.thoughtworks.iamcoach.dao.ItemDaoImpl;
 import com.thoughtworks.iamcoach.vo.Item;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
