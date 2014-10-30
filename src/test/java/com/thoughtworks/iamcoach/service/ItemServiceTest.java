@@ -1,10 +1,15 @@
 package com.thoughtworks.iamcoach.service;
 
+import com.thoughtworks.iamcoach.dao.ItemDaoImpl;
 import com.thoughtworks.iamcoach.vo.Item;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.fest.assertions.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class ItemServiceTest {
 
@@ -20,7 +25,10 @@ public class ItemServiceTest {
     }
 
     @Test
-    public void should_be_mocked() {
-
+    public void get_item_by_barcode_test() {
+        ItemDaoImpl itemDaoImpl = mock(ItemDaoImpl.class);
+        when(itemDaoImpl.getItemByBarcode("ITEM000001")).thenReturn(new Item(1, "ITEM000001", "雪碧", "瓶", 3.00));
+        ItemService itemService = new ItemServiceImpl();
+        assertThat(itemService.getItemByBarcode("ITEM000001").getId()).isEqualTo(1);
     }
 }
