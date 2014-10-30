@@ -8,8 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PromotionDaoImpl implements PromotionDao{
+public class PromotionDaoImpl implements PromotionDao {
     private DBUtil dbUtil = new DBUtil();
+
     @Override
     public Promotion getPromotionById(int id) {
         Promotion promotion = null;
@@ -53,7 +54,7 @@ public class PromotionDaoImpl implements PromotionDao{
         try {
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
-            while(rs.next()) {
+            while (rs.next()) {
                 int type = rs.getInt("type");
                 Promotion promotion = PromotionFactory.getPromotionByType(type);
                 promotion.setId(rs.getInt("proid"));
@@ -77,6 +78,34 @@ public class PromotionDaoImpl implements PromotionDao{
 
     @Override
     public List<Promotion> getPromotionsByItemId(int id) {
-        return null;
+        List<Promotion> promotionList = new ArrayList<Promotion>();
+        Connection conn = dbUtil.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM items_promotions WHERE itemId=?";
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery(sql);
+            while (rs.next()) {
+                int promotionId = rs.getInt("promotionId");
+                int discount = rs.getInt("discount");
+                Promotion promotion = getPromotionById(promotionId);
+                promotionList.add(PromotionFactory.getPromotionByType(promotion.getType()));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                dbUtil.close();
+                pstmt.close();
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return promotionList;
     }
 }
