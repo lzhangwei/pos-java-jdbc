@@ -4,6 +4,7 @@ import com.thoughtworks.iamcoach.dao.ItemDaoImpl;
 import com.thoughtworks.iamcoach.vo.Item;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +14,8 @@ import static org.mockito.Mockito.when;
 
 public class ItemServiceTest {
 
-    private List<Item> createItems() {
-        List<Item> result = new ArrayList<Item>();
+    private ArrayList<Item> createItems() {
+        ArrayList<Item> result = new ArrayList<Item>();
         result.add(new Item(0, "ITEM000000", "可口可乐", "瓶", 3.00));
         result.add(new Item(1, "ITEM000001", "雪碧", "瓶", 3.00));
         result.add(new Item(2, "ITEM000002", "苹果", "瓶", 3.00));
@@ -30,5 +31,13 @@ public class ItemServiceTest {
         when(itemDaoImpl.getItemByBarcode("ITEM000001")).thenReturn(new Item(1, "ITEM000001", "雪碧", "瓶", 3.00));
         ItemService itemService = new ItemServiceImpl();
         assertThat(itemService.getItemByBarcode("ITEM000001").getId()).isEqualTo(1);
+    }
+
+    @Test
+    public void get_items_test() {
+        ItemDaoImpl itemDaoImpl = mock(ItemDaoImpl.class);
+        when(itemDaoImpl.getItems()).thenReturn(createItems());
+        ItemService itemService = new ItemServiceImpl();
+        assertThat(itemService.getItems().size()).isEqualTo(6);
     }
 }
