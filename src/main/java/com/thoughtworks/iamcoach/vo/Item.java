@@ -10,6 +10,7 @@ public class Item {
     private String unit;
     private double price;
     private Category category;
+    private int discount;
     private List<Promotion> promotionList = new ArrayList<Promotion>();
 
     public List<Promotion> getPromotionList() {
@@ -37,6 +38,14 @@ public class Item {
         this.price = price;
         this.category = category;
         this.promotionList = promotionList;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
 
     public Category getCategory() {
