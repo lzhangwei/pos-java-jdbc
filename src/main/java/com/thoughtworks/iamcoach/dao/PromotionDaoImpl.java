@@ -5,6 +5,7 @@ import com.thoughtworks.iamcoach.vo.Promotion;
 import com.thoughtworks.iamcoach.vo.PromotionFactory;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PromotionDaoImpl implements PromotionDao{
@@ -44,6 +45,33 @@ public class PromotionDaoImpl implements PromotionDao{
 
     @Override
     public List<Promotion> getPromotions() {
-        return null;
+        List<Promotion> promotions = new ArrayList<Promotion>();
+        String sql = "SELECT * FROM promotions";
+        Connection conn = dbUtil.getConnection();
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while(rs.next()) {
+                int type = rs.getInt("type");
+                Promotion promotion = PromotionFactory.getPromotionByType(type);
+                promotion.setId(rs.getInt("proid"));
+                promotion.setPromotionDesc(rs.getString("prodesc"));
+                promotion.setType(rs.getInt("type"));
+                promotions.add(promotion);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                dbUtil.close();
+                stmt.close();
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return promotions;
     }
 }
