@@ -171,4 +171,7 @@ public class Pos {
             promotionPrice = calSumPromotionPrice(cartItems3);
         }
     }
+
+    public void caculatePrice() {
+    }
 }
