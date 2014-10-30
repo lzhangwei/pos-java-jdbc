@@ -1,13 +1,21 @@
 USE letusgo
 
+DROP TABLE IF EXISTS categories;
+
+CREATE TABLE categories(
+  id int auto_increment primary key,
+  name varchar(20)
+);
+
 DROP TABLE IF EXISTS items;
 
 CREATE TABLE items(
   id int auto_increment primary key,
   barcode varchar(14),
-  itemname varchar(20),
+  name varchar(20),
   unit varchar(8),
-  price double
+  price double,
+  category int foreign key references categories(id)
 );
 
 DROP TABLE IF EXISTS promotions;
@@ -29,11 +37,16 @@ CREATE TABLE promotions(
 DROP TABLE IF EXISTS items_promotions;
 
 CREATE TABLE items_promotions(
-  itemId int not null foreign key  REFERENCES items(id),
-  promotionId int not null REFERENCES promotions(id),
+  itemId int not null foreign key REFERENCES items(id),
+  promotionId int not null foreign key REFERENCES promotions(id),
   discount double,
   primary key(itemId, promotionId)
 );
+
+insert into categories values (null,'饮料');
+insert into categories values (null,'水果');
+insert into categories values (null,'食品');
+insert into categories values (null,'生活用品');
 
 insert into items values(null,'ITEM000000','可口可乐','瓶',3.0);
 insert into items values(null,'ITEM000001','雪碧','瓶',3.0);
