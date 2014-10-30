@@ -34,7 +34,7 @@ CREATE TABLE items_promotions(
   FOREIGN KEY(itemId)REFERENCES items(id),
   promotionId int not null,
   FOREIGN KEY(promotionId) REFERENCES promotions(id),
-  discount double,
+  discount int,
   primary key(itemId, promotionId)
 );
 
