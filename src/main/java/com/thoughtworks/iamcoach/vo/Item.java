@@ -1,5 +1,8 @@
 package com.thoughtworks.iamcoach.vo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Item {
     private int id;
     private String barcode;
@@ -7,6 +10,15 @@ public class Item {
     private String unit;
     private double price;
     private Category category;
+    private List<Promotion> promotionList = new ArrayList<Promotion>();
+
+    public List<Promotion> getPromotionList() {
+        return promotionList;
+    }
+
+    public void setPromotionList(List<Promotion> promotionList) {
+        this.promotionList = promotionList;
+    }
 
     public Item(int id, String barcode, String name, String unit, double price, Category category) {
         this.id = id;
@@ -15,6 +27,16 @@ public class Item {
         this.unit = unit;
         this.price = price;
         this.category = category;
+    }
+
+    public Item(int id, String barcode, String name, String unit, double price, Category category, List<Promotion> promotionList) {
+        this.id = id;
+        this.barcode = barcode;
+        this.name = name;
+        this.unit = unit;
+        this.price = price;
+        this.category = category;
+        this.promotionList = promotionList;
     }
 
     public Category getCategory() {
