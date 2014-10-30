@@ -74,4 +74,9 @@ public class PromotionDaoImpl implements PromotionDao{
         }
         return promotions;
     }
+
+    @Override
+    public List<Promotion> getPromotionsByItemId(int id) {
+        return null;
+    }
 }
