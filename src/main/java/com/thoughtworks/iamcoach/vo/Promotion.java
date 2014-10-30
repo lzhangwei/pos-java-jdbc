@@ -1,6 +1,6 @@
 package com.thoughtworks.iamcoach.vo;
 
-public class Promotion {
+public abstract class Promotion {
     private int  id;
     private String promotionDesc;
     private int type;
@@ -37,4 +37,6 @@ public class Promotion {
     public void setType(int type) {
         this.type = type;
     }
+
+    public abstract double caculatePromotionPrice(Item item, double num);
 }
