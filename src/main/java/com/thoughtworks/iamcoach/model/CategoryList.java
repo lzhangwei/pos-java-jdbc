@@ -11,6 +11,14 @@ public class CategoryList {
         this.category = category;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public List<CartItem> getCartItemList() {
+        return cartItemList;
+    }
+
     public void addCartItem(CartItem cartItem) {
         cartItemList.add(cartItem);
     }
