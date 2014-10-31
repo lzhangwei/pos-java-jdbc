@@ -1,8 +1,5 @@
 package com.thoughtworks.iamcoach.model;
 
-import com.thoughtworks.iamcoach.model.Item;
-import com.thoughtworks.iamcoach.model.Promotion;
-
 import java.util.List;
 
 public class CartItem{
