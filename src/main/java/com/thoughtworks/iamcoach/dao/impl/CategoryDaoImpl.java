@@ -2,7 +2,7 @@ package com.thoughtworks.iamcoach.dao.impl;
 
 import com.thoughtworks.iamcoach.dao.CategoryDao;
 import com.thoughtworks.iamcoach.util.DBUtil;
-import com.thoughtworks.iamcoach.vo.Category;
+import com.thoughtworks.iamcoach.model.Category;
 
 import java.sql.*;
 

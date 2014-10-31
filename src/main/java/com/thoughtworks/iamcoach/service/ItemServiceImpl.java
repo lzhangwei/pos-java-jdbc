@@ -6,9 +6,9 @@ import com.thoughtworks.iamcoach.dao.impl.CategoryDaoImpl;
 import com.thoughtworks.iamcoach.dao.impl.ItemDaoImpl;
 import com.thoughtworks.iamcoach.dao.ItemDao;
 import com.thoughtworks.iamcoach.dao.impl.PromotionDaoImpl;
-import com.thoughtworks.iamcoach.vo.Category;
-import com.thoughtworks.iamcoach.vo.Item;
-import com.thoughtworks.iamcoach.vo.Promotion;
+import com.thoughtworks.iamcoach.model.Category;
+import com.thoughtworks.iamcoach.model.Item;
+import com.thoughtworks.iamcoach.model.Promotion;
 
 import java.util.ArrayList;
 import java.util.List;
