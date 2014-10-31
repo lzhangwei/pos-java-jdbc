@@ -1,5 +1,7 @@
 package com.thoughtworks.iamcoach.pos;
 
+import com.thoughtworks.iamcoach.service.ItemService;
+import com.thoughtworks.iamcoach.service.ItemServiceImpl;
 import com.thoughtworks.iamcoach.vo.Item;
 
 import java.util.ArrayList;
@@ -11,6 +13,8 @@ public class Pos {
     private ArrayList<CartItem> cartItems;
     private double sumPrice;
     private double promotionPrice;
+
+    private ItemService itemService = new ItemServiceImpl();
 
     public ArrayList<Item> getItems() {
         return items;
@@ -28,38 +32,17 @@ public class Pos {
         return promotionPrice;
     }
 
-    {
-        this.items = new ArrayList<Item>();
-        this.items.add(new Item(0, "ITEM000000", "可口可乐", "瓶", 3.00));
-        this.items.add(new Item(1, "ITEM000001", "雪碧", "瓶", 3.00));
-        this.items.add(new Item(2, "ITEM000002", "苹果", "瓶", 3.00));
-        this.items.add(new Item(3, "ITEM000003", "荔枝", "瓶", 3.00));
-        this.items.add(new Item(4, "ITEM000004", "电池", "瓶", 3.00));
-        this.items.add(new Item(5, "ITEM000005", "方便面", "瓶", 3.00));
-    }
-
     public void parseBarcode(List<String> barcodes) {
         cartItems = new ArrayList<CartItem>();
 
         for (String barcode : barcodes) {
             String[] splitBarcode = barcode.split("-");
-            Item item = findItem(splitBarcode[0]);
+            Item item = itemService.getItemByBarcode(splitBarcode[0]);
             int num = splitBarcode.length == 1 ? 1 : Integer.parseInt(splitBarcode[1]);
             cartItems.add(new CartItem(item, num));
         }
 
         cartItems = mergeCartItems(cartItems);
-    }
-
-    private Item findItem(String barcode) {
-        Item result = null;
-        for (Item item : items) {
-            if (item.getBarcode().equals(barcode)) {
-                result = item;
-                break;
-            }
-        }
-        return result;
     }
 
     private ArrayList<CartItem> mergeCartItems(ArrayList<CartItem> cartItems) {
@@ -173,5 +156,6 @@ public class Pos {
     }
 
     public void caculatePrice() {
+
     }
 }
