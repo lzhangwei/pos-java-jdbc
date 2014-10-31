@@ -1,6 +1,9 @@
 package com.thoughtworks.iamcoach.pos;
 
 import com.thoughtworks.iamcoach.vo.Item;
+import com.thoughtworks.iamcoach.vo.Promotion;
+
+import java.util.List;
 
 public class CartItem implements Cloneable {
     private Item item;
@@ -61,5 +64,18 @@ public class CartItem implements Cloneable {
             e.printStackTrace();
         }
         return o;
+    }
+
+    public double calcutePromotionPrice() {
+        double result = 0;
+        List<Promotion> promotionList = item.getPromotionList();
+        if (promotionList.size() > 0) {
+            result = promotionList.get(0).caculatePromotionPrice(item, num);
+            for (int i = 1; i < promotionList.size(); i++) {
+                double price = promotionList.get(i).caculatePromotionPrice(item, num);
+                result = price > result ? price : result;
+            }
+        }
+        return result;
     }
 }
