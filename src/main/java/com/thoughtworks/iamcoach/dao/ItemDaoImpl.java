@@ -1,13 +1,18 @@
 package com.thoughtworks.iamcoach.dao;
 
 import com.thoughtworks.iamcoach.util.DBUtil;
+import com.thoughtworks.iamcoach.vo.Category;
 import com.thoughtworks.iamcoach.vo.Item;
+import com.thoughtworks.iamcoach.vo.Promotion;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ItemDaoImpl implements ItemDao {
     private DBUtil dbUtil = new DBUtil();
+    private PromotionDao promotionDao = new PromotionDaoImpl();
+    private CategoryDao categoryDao = new CategoryDaoImpl();
 
     @Override
     public ArrayList<Item> getItems() {
@@ -24,13 +29,24 @@ public class ItemDaoImpl implements ItemDao {
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                result.add(new Item(
-                        rs.getInt("id"),
+                int id = rs.getInt("id");
+                Item item = new Item(
+                        id,
                         rs.getString("barcode"),
                         rs.getString("name"),
                         rs.getString("unit"),
                         rs.getDouble("price")
-                ));
+                );
+
+                Category category = categoryDao.getCategoryById(rs.getInt("category"));
+                item.setCategory(category);
+
+                List<Promotion> promotionList = promotionDao.getPromotionsByItemId(id);
+                item.setPromotionList(promotionList);
+
+                item.setDiscount(promotionDao.getPromotionDiscount(id));
+
+                result.add(item);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -56,20 +72,33 @@ public class ItemDaoImpl implements ItemDao {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        String sql = "select * from items where barcode=?";
+        String sql = "select * from items,items_promotions where barcode=? and items.id=items_promotions.itemId";
 
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, barcode);
             rs = pstmt.executeQuery(sql);
             rs.next();
-            result = new Item(
-                    rs.getInt("id"),
-                    rs.getString("barcode"),
-                    rs.getString("name"),
-                    rs.getString("unit"),
-                    rs.getDouble("price")
-            );
+            int id = rs.getInt("id");
+            result = new Item(id,rs.getString("barcode"),rs.getString("name"),rs.getString("unit"),rs.getDouble("price"));
+
+            int categoryId = rs.getInt("category");
+            Category category = categoryDao.getCategoryById(categoryId);
+            result.setCategory(category);
+
+            result.setDiscount(rs.getInt("discount"));
+
+            int promotionId = rs.getInt("promotionId");
+            Promotion promotion = promotionDao.getPromotionById(promotionId);
+            result.getPromotionList().add(promotion);
+            while(rs.next()){
+                promotionId = rs.getInt("promotionId");
+                promotion = promotionDao.getPromotionById(promotionId);
+                result.getPromotionList().add(promotion);
+            }
+
+            result.setDiscount(promotionDao.getPromotionDiscount(id));
+            
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -81,7 +110,6 @@ public class ItemDaoImpl implements ItemDao {
                 e.printStackTrace();
             }
         }
-
         return result;
     }
 }
