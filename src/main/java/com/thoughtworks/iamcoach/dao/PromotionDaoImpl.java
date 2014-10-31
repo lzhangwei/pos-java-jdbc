@@ -111,6 +111,31 @@ public class PromotionDaoImpl implements PromotionDao {
 
     @Override
     public int getPromotionDiscount(int id) {
-        return 0;
+        int result = 100;
+        Connection conn = dbUtil.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT discount FROM items_promotions WHERE itemId=? AND promotionId=3";
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery(sql);
+            if (rs.next()) {
+                result = rs.getInt("discount");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                dbUtil.close();
+                pstmt.close();
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
     }
 }
