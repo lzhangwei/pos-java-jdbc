@@ -108,4 +108,9 @@ public class PromotionDaoImpl implements PromotionDao {
         }
         return promotionList;
     }
+
+    @Override
+    public int getPromotionDiscount(int id) {
+        return 0;
+    }
 }
