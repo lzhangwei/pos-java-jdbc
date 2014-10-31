@@ -1,6 +1,6 @@
 package com.thoughtworks.iamcoach.service;
 
-import com.thoughtworks.iamcoach.dao.ItemDaoImpl;
+import com.thoughtworks.iamcoach.dao.impl.ItemDaoImpl;
 import com.thoughtworks.iamcoach.dao.ItemDao;
 import com.thoughtworks.iamcoach.vo.Item;
 
