@@ -33,7 +33,7 @@ public class App {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         System.out.println("日期：" + format.format(date));
 
-        System.out.print(creatItemPrint(pos));
+        System.out.print(creatItemPrint(pos.getCartItems()));
 
         System.out.println("总计：");
         System.out.print("优惠前：" + df.format(pos.getSumPrice()) + "    ");
@@ -41,9 +41,8 @@ public class App {
         System.out.print("优惠差价：" + df.format(pos.getPromotionPrice()));
     }
 
-    private static String creatItemPrint(Pos pos) {
+    private static String creatItemPrint(ArrayList<CartItem> cartItems) {
         String result = "";
-        ArrayList<CartItem> cartItems = pos.getCartItems();
         DecimalFormat df = new DecimalFormat("0.00");
         for (int i = 0; i < cartItems.size(); i++) {
             result += "名称：" + cartItems.get(i).getItem().getName() + ",";
