@@ -1,11 +1,12 @@
-package com.thoughtworks.iamcoach.dao;
+package com.thoughtworks.iamcoach.dao.impl;
 
+import com.thoughtworks.iamcoach.dao.CategoryDao;
 import com.thoughtworks.iamcoach.util.DBUtil;
 import com.thoughtworks.iamcoach.vo.Category;
 
 import java.sql.*;
 
-public class CategoryDaoImpl implements CategoryDao{
+public class CategoryDaoImpl implements CategoryDao {
 
     private DBUtil dbUtil = new DBUtil();
 

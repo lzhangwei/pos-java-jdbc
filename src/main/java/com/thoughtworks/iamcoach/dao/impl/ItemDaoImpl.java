@@ -1,5 +1,10 @@
-package com.thoughtworks.iamcoach.dao;
+package com.thoughtworks.iamcoach.dao.impl;
 
+import com.thoughtworks.iamcoach.dao.CategoryDao;
+import com.thoughtworks.iamcoach.dao.ItemDao;
+import com.thoughtworks.iamcoach.dao.PromotionDao;
+import com.thoughtworks.iamcoach.dao.impl.CategoryDaoImpl;
+import com.thoughtworks.iamcoach.dao.impl.PromotionDaoImpl;
 import com.thoughtworks.iamcoach.util.DBUtil;
 import com.thoughtworks.iamcoach.vo.Category;
 import com.thoughtworks.iamcoach.vo.Item;

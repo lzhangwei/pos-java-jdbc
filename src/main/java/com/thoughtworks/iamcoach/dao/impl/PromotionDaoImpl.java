@@ -1,5 +1,6 @@
-package com.thoughtworks.iamcoach.dao;
+package com.thoughtworks.iamcoach.dao.impl;
 
+import com.thoughtworks.iamcoach.dao.PromotionDao;
 import com.thoughtworks.iamcoach.util.DBUtil;
 import com.thoughtworks.iamcoach.vo.Promotion;
 import com.thoughtworks.iamcoach.vo.PromotionFactory;
