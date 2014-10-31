@@ -1,7 +1,7 @@
 package com.thoughtworks.iamcoach.service;
 
 import com.thoughtworks.iamcoach.dao.impl.ItemDaoImpl;
-import com.thoughtworks.iamcoach.vo.*;
+import com.thoughtworks.iamcoach.model.*;
 import org.junit.Test;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package com.thoughtworks.iamcoach.pos;
 
-import com.thoughtworks.iamcoach.vo.*;
+import com.thoughtworks.iamcoach.model.*;
 import org.junit.Test;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package com.thoughtworks.iamcoach.dao;
 
-import com.thoughtworks.iamcoach.vo.Promotion;
+import com.thoughtworks.iamcoach.model.Promotion;
 
 import java.util.List;
 

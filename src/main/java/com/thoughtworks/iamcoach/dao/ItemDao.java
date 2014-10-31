@@ -1,6 +1,6 @@
 package com.thoughtworks.iamcoach.dao;
 
-import com.thoughtworks.iamcoach.vo.Item;
+import com.thoughtworks.iamcoach.model.Item;
 
 import java.util.ArrayList;
 
