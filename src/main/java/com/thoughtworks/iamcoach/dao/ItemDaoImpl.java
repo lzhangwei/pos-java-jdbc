@@ -72,12 +72,13 @@ public class ItemDaoImpl implements ItemDao {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        String sql = "select * from items,items_promotions where barcode=? and items.id=items_promotions.itemId";
+        String sql = "select items.*,items_promotions.promotionId,items_promotions.discount from items,items_promotions "+
+                "where items.barcode=? and items.id=items_promotions.itemId";
 
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, barcode);
-            rs = pstmt.executeQuery(sql);
+            rs = pstmt.executeQuery();
             rs.next();
             int id = rs.getInt("id");
             result = new Item(id,rs.getString("barcode"),rs.getString("name"),rs.getString("unit"),rs.getDouble("price"));
