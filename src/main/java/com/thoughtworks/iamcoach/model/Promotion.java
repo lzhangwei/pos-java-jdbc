@@ -1,4 +1,4 @@
-package com.thoughtworks.iamcoach.vo;
+package com.thoughtworks.iamcoach.model;
 
 public abstract class Promotion {
     private int  id;

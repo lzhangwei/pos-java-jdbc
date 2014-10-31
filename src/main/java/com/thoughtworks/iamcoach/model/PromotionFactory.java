@@ -1,4 +1,4 @@
-package com.thoughtworks.iamcoach.vo;
+package com.thoughtworks.iamcoach.model;
 
 public class PromotionFactory {
     public static final int PROMOTION_DISCOUNT = 1;
