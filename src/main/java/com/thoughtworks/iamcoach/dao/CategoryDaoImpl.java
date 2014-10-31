@@ -2,13 +2,8 @@ package com.thoughtworks.iamcoach.dao;
 
 import com.thoughtworks.iamcoach.util.DBUtil;
 import com.thoughtworks.iamcoach.vo.Category;
-import com.thoughtworks.iamcoach.vo.Promotion;
-import com.thoughtworks.iamcoach.vo.PromotionFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class CategoryDaoImpl implements CategoryDao{
 
@@ -16,7 +11,7 @@ public class CategoryDaoImpl implements CategoryDao{
 
     @Override
     public Category getCategoryById(int id) {
-        Category category = null;
+        Category category = new Category();
         Connection conn = dbUtil.getConnection();
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -26,7 +21,7 @@ public class CategoryDaoImpl implements CategoryDao{
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
-            rs = pstmt.executeQuery(sql);
+            rs = pstmt.executeQuery();
             rs.next();
             category.setId(rs.getInt("id"));
             category.setName(rs.getString("name"));
