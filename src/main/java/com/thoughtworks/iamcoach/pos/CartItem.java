@@ -66,7 +66,7 @@ public class CartItem implements Cloneable {
         return o;
     }
 
-    public double calcutePromotionPrice() {
+    public double calculatePromotionPrice() {
         double result = 0;
         List<Promotion> promotionList = item.getPromotionList();
         if (promotionList.size() > 0) {
