@@ -20,7 +20,7 @@ public class CartItem implements Cloneable {
     }
 
     public double getSumPrice() {
-        return num * item.getPrice();
+        return sumPrice;
     }
 
     public void setSumPrice(double sumPrice) {
