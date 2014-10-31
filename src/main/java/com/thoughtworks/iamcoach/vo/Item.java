@@ -30,7 +30,7 @@ public class Item {
         this.category = category;
     }
 
-    public Item(int id, String barcode, String name, String unit, double price, Category category, List<Promotion> promotionList) {
+    public Item(int id, String barcode, String name, String unit, double price, Category category, List<Promotion> promotionList, int discount) {
         this.id = id;
         this.barcode = barcode;
         this.name = name;
@@ -38,6 +38,7 @@ public class Item {
         this.price = price;
         this.category = category;
         this.promotionList = promotionList;
+        this.discount = discount;
     }
 
     public int getDiscount() {
