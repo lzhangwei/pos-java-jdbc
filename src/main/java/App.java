@@ -1,4 +1,5 @@
 import com.thoughtworks.iamcoach.model.CartItem;
+import com.thoughtworks.iamcoach.model.CategoryList;
 import com.thoughtworks.iamcoach.pos.Pos;
 import com.thoughtworks.iamcoach.util.Scanner;
 
@@ -33,7 +34,7 @@ public class App {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         System.out.println("日期：" + format.format(date));
 
-        System.out.print(creatItemPrint(pos.getCartItems()));
+        System.out.print(creatItemPrint(pos));
 
         System.out.println("总计：");
         System.out.print("优惠前：" + df.format(pos.getSumPrice()) + "    ");
@@ -41,17 +42,23 @@ public class App {
         System.out.print("优惠差价：" + df.format(pos.getPromotionPrice()));
     }
 
-    private static String creatItemPrint(ArrayList<CartItem> cartItems) {
+    private static String creatItemPrint(Pos pos) {
         String result = "";
+        List<CategoryList> categoryLists = pos.createCategoryLists();
         DecimalFormat df = new DecimalFormat("0.00");
-        for (int i = 0; i < cartItems.size(); i++) {
-            result += "名称：" + cartItems.get(i).getItem().getName() + ",";
-            result += "数量：" + df.format(cartItems.get(i).getNum()) + ",";
-            result += "单价：" + df.format(cartItems.get(i).getItem().getPrice()) + ",";
-            result += "单位：" + cartItems.get(i).getItem().getUnit() + ",";
-            result += "小计：" + df.format(cartItems.get(i).getSumPrice()) + ",";
-            result += "优惠金额：" + df.format(cartItems.get(i).getPromotionPrice()) + "\n";
+        for(CategoryList categoryList : categoryLists) {
+            result += categoryList.getCategory().getName() + "类：\n";
+            List<CartItem> cartItems = categoryList.getCartItemList();
+            for (int i = 0; i < cartItems.size(); i++) {
+                result += "名称：" + cartItems.get(i).getItem().getName() + ",";
+                result += "数量：" + df.format(cartItems.get(i).getNum()) + ",";
+                result += "单价：" + df.format(cartItems.get(i).getItem().getPrice()) + ",";
+                result += "单位：" + cartItems.get(i).getItem().getUnit() + ",";
+                result += "小计：" + df.format(cartItems.get(i).getSumPrice()) + ",";
+                result += "优惠金额：" + df.format(cartItems.get(i).getPromotionPrice()) + "\n";
+            }
         }
+
         return result;
     }
 }
