@@ -1,6 +1,8 @@
 package com.thoughtworks.iamcoach.pos;
 
 import com.thoughtworks.iamcoach.model.CartItem;
+import com.thoughtworks.iamcoach.model.Category;
+import com.thoughtworks.iamcoach.model.CategoryList;
 import com.thoughtworks.iamcoach.service.ItemService;
 import com.thoughtworks.iamcoach.service.ItemServiceImpl;
 import com.thoughtworks.iamcoach.model.Item;
@@ -10,8 +12,10 @@ import java.util.List;
 
 public class Pos {
 
-    private ArrayList<Item> items = new ArrayList<Item>();;
-    private ArrayList<CartItem> cartItems = new ArrayList<CartItem>();;
+    private ArrayList<Item> items = new ArrayList<Item>();
+    ;
+    private ArrayList<CartItem> cartItems = new ArrayList<CartItem>();
+    ;
     private double sumPrice;
     private double promotionPrice;
 
@@ -65,11 +69,30 @@ public class Pos {
     }
 
     public void caculatePrice() {
-        for(CartItem cartItem : cartItems) {
+        for (CartItem cartItem : cartItems) {
             cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
             cartItem.setPromotionPrice(cartItem.calculatePromotionPrice());
             sumPrice += cartItem.getSumPrice();
             promotionPrice += cartItem.getPromotionPrice();
         }
+    }
+
+    public List<CategoryList> createCategoryLists() {
+        List<CategoryList> categoryLists = new ArrayList<CategoryList>();
+        for (int i = 0; i < cartItems.size(); i++) {
+            Category category = cartItems.get(i).getItem().getCategory();
+            CategoryList categoryList = new CategoryList();
+            categoryList.setCategory(category);
+            categoryList.addCartItem(cartItems.get(i));
+            for(int j=i+1;j<cartItems.size();j++) {
+                if(cartItems.get(j).getItem().getCategory().getId() == category.getId()) {
+                    categoryList.addCartItem(cartItems.get(j));
+                    cartItems.remove(j);
+                    j--;
+                }
+            }
+            categoryLists.add(categoryList);
+        }
+        return categoryLists;
     }
 }
