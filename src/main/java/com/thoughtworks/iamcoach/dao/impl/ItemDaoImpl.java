@@ -69,9 +69,9 @@ public class ItemDaoImpl implements ItemDao {
         Connection conn = dbUtil.getConnection();
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-
-        String sql = "select items.*,items_promotions.promotionId,items_promotions.discount from items,items_promotions "+
-                "where items.barcode=? and items.id=items_promotions.itemId";
+        String sql = "select * from items left join items_promotions on items.id=items_promotions.itemId  where items.barcode=? ";
+//        String sql = "select items.*,items_promotions.promotionId,items_promotions.discount from items,items_promotions "+
+//                "where items.barcode=? and items.id=items_promotions.itemId";
 
         try {
             pstmt = conn.prepareStatement(sql);
@@ -88,12 +88,14 @@ public class ItemDaoImpl implements ItemDao {
             result.setDiscount(rs.getInt("discount"));
 
             int promotionId = rs.getInt("promotionId");
-            Promotion promotion = promotionDao.getPromotionById(promotionId);
-            result.getPromotionList().add(promotion);
-            while(rs.next()){
-                promotionId = rs.getInt("promotionId");
-                promotion = promotionDao.getPromotionById(promotionId);
+            if(promotionId != 0) {
+                Promotion promotion = promotionDao.getPromotionById(promotionId);
                 result.getPromotionList().add(promotion);
+                while(rs.next()){
+                    promotionId = rs.getInt("promotionId");
+                    promotion = promotionDao.getPromotionById(promotionId);
+                    result.getPromotionList().add(promotion);
+                }
             }
 
             result.setDiscount(promotionDao.getPromotionDiscount(id));
