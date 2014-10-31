@@ -1,4 +1,4 @@
-package com.thoughtworks.iamcoach.pos;
+package com.thoughtworks.iamcoach.util;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
