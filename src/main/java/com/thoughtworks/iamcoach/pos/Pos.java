@@ -1,5 +1,6 @@
 package com.thoughtworks.iamcoach.pos;
 
+import com.thoughtworks.iamcoach.model.CartItem;
 import com.thoughtworks.iamcoach.service.ItemService;
 import com.thoughtworks.iamcoach.service.ItemServiceImpl;
 import com.thoughtworks.iamcoach.model.Item;

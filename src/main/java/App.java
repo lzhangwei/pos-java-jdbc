@@ -1,4 +1,4 @@
-import com.thoughtworks.iamcoach.pos.CartItem;
+import com.thoughtworks.iamcoach.model.CartItem;
 import com.thoughtworks.iamcoach.pos.Pos;
 import com.thoughtworks.iamcoach.util.Scanner;
 

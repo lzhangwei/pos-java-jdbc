@@ -1,4 +1,4 @@
-package com.thoughtworks.iamcoach.pos;
+package com.thoughtworks.iamcoach.model;
 
 import com.thoughtworks.iamcoach.model.Item;
 import com.thoughtworks.iamcoach.model.Promotion;
