@@ -98,7 +98,7 @@ public class ItemDaoImpl implements ItemDao {
             }
 
             result.setDiscount(promotionDao.getPromotionDiscount(id));
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
