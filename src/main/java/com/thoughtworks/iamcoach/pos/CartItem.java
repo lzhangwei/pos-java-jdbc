@@ -5,7 +5,7 @@ import com.thoughtworks.iamcoach.vo.Promotion;
 
 import java.util.List;
 
-public class CartItem implements Cloneable {
+public class CartItem{
     private Item item;
     private double num;
     private double sumPrice;
@@ -54,16 +54,6 @@ public class CartItem implements Cloneable {
 
     public String getBarcode() {
         return item.getBarcode();
-    }
-
-    public Object clone() {
-        Object o = null;
-        try {
-            o = super.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        return o;
     }
 
     public double calculatePromotionPrice() {
