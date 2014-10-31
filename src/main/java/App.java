@@ -1,6 +1,6 @@
 import com.thoughtworks.iamcoach.pos.CartItem;
 import com.thoughtworks.iamcoach.pos.Pos;
-import com.thoughtworks.iamcoach.pos.Scanner;
+import com.thoughtworks.iamcoach.util.Scanner;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
