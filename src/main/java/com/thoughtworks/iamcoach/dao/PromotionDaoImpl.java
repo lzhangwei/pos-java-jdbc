@@ -23,7 +23,7 @@ public class PromotionDaoImpl implements PromotionDao {
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
-            rs = pstmt.executeQuery(sql);
+            rs = pstmt.executeQuery();
             rs.next();
             int type = rs.getInt("type");
             promotion = PromotionFactory.getPromotionByType(type);
@@ -88,7 +88,7 @@ public class PromotionDaoImpl implements PromotionDao {
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
-            rs = pstmt.executeQuery(sql);
+            rs = pstmt.executeQuery();
             while (rs.next()) {
                 int promotionId = rs.getInt("promotionId");
                 int discount = rs.getInt("discount");
@@ -121,7 +121,7 @@ public class PromotionDaoImpl implements PromotionDao {
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
-            rs = pstmt.executeQuery(sql);
+            rs = pstmt.executeQuery();
             if (rs.next()) {
                 result = rs.getInt("discount");
             }
