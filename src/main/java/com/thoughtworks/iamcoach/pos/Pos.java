@@ -14,6 +14,10 @@ public class Pos {
     private double sumPrice;
     private double promotionPrice;
 
+    public void setCartItems(ArrayList<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
     private ItemService itemService = new ItemServiceImpl();
 
     public ArrayList<Item> getItems() {
