@@ -43,13 +43,9 @@ public class ItemDaoImpl implements ItemDao {
                         rs.getDouble("price")
                 );
 
-                Category category = categoryDao.getCategoryById(rs.getInt("category"));
+                Category category = new Category();
+                category.setId(id);
                 item.setCategory(category);
-
-                List<Promotion> promotionList = promotionDao.getPromotionsByItemId(id);
-                item.setPromotionList(promotionList);
-
-                item.setDiscount(promotionDao.getPromotionDiscount(id));
 
                 result.add(item);
             }
