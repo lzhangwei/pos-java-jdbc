@@ -9,8 +9,8 @@ import java.util.List;
 
 public class Pos {
 
-    private ArrayList<Item> items;
-    private ArrayList<CartItem> cartItems;
+    private ArrayList<Item> items = new ArrayList<Item>();;
+    private ArrayList<CartItem> cartItems = new ArrayList<CartItem>();;
     private double sumPrice;
     private double promotionPrice;
 
@@ -33,11 +33,10 @@ public class Pos {
     }
 
     public void parseBarcode(List<String> barcodes) {
-        cartItems = new ArrayList<CartItem>();
-
         for (String barcode : barcodes) {
             String[] splitBarcode = barcode.split("-");
             Item item = itemService.getItemByBarcode(splitBarcode[0]);
+            items.add(item);
             int num = splitBarcode.length == 1 ? 1 : Integer.parseInt(splitBarcode[1]);
             cartItems.add(new CartItem(item, num));
         }
