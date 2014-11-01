@@ -13,9 +13,7 @@ import java.util.List;
 public class Pos {
 
     private ArrayList<Item> items = new ArrayList<Item>();
-    ;
     private ArrayList<CartItem> cartItems = new ArrayList<CartItem>();
-    ;
     private double sumPrice;
     private double promotionPrice;
 
