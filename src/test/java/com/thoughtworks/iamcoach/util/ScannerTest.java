@@ -23,10 +23,13 @@ public class ScannerTest {
         barcodes.add("ITEM000005");
         barcodes.add("ITEM000005");
         barcodes.add("ITEM000005");
+        barcodes.add("ITEM000002");
+        barcodes.add("ITEM000002");
+        barcodes.add("ITEM000002");
         String path = "src/main/resources/cart.txt";
         Scanner scanner = new Scanner();
         List<String> result = scanner.readFile(path);
-        assertThat(result.size()).isEqualTo(9);
+        assertThat(result.size()).isEqualTo(12);
         assertThat(result.get(1)).isEqualTo("ITEM000001");
     }
 
