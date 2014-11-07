@@ -1,7 +1,6 @@
 package com.thoughtworks.iamcoach.util;
 
 
-import com.thoughtworks.iamcoach.util.Scanner;
 import org.junit.Test;
 
 import java.util.ArrayList;
